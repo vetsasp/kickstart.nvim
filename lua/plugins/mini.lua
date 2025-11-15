@@ -1,5 +1,5 @@
 return { -- Collection of various small independent plugins/modules
-  'echasnovski/mini.nvim',
+  'nvim-mini/mini.nvim',
   config = function()
     -- Better Around/Inside textobjects
     --
@@ -8,6 +8,13 @@ return { -- Collection of various small independent plugins/modules
     --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
     --  - ci'  - [C]hange [I]nside [']quote
     require('mini.ai').setup { n_lines = 500 }
+
+    require('mini.comment').setup()
+    require('mini.pairs').setup()
+    require('mini.icons').setup()
+    require('mini.tabline').setup()
+    require('mini.map').setup()
+    require('mini.notify').setup()
 
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     --

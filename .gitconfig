@@ -1,0 +1,9 @@
+[user]
+	email = vetsasp@gmail.com
+	name = vetsasp
+[init]
+	defaultBranch = master
+[core]
+	excludesfile = /home/philip/.gitignore
+[color]
+	ui = auto

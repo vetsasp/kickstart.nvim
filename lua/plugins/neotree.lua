@@ -6,22 +6,28 @@ return {
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+    'nvim-tree/nvim-web-devicons',
     'MunifTanjim/nui.nvim',
   },
-  lazy = false,
+
   keys = {
     {
       '<leader>e',
-      ':Neotree reveal<CR>',
-      desc = 'NeoTree reveal',
+      ':Neotree toggle reveal<CR>',
+      desc = 'NeoTree',
       silent = true,
     },
   },
+
   opts = {
     filesystem = {
       window = {
+        position = 'left',
         mappings = {
+          -- Your overrides
+          ['l'] = 'open', -- open file / expand directory
+          ['h'] = 'close_node', -- collapse directory
+          ['H'] = 'navigate_up', -- go to parent directory
           ['<leader>e'] = 'close_window',
         },
       },
