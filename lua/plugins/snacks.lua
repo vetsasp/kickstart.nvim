@@ -1,3 +1,12 @@
+local banner = [[
+  ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
+  ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z
+  ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z
+  ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z
+  ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
+  ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
+  ]]
+
 return {
   'folke/snacks.nvim',
   lazy = false,
@@ -22,20 +31,25 @@ return {
           { icon = '󰒲 ', key = 'l', desc = 'Lazy', action = ':Lazy' },
           { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
         },
-        -- header = [[
-        --     ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
-        --     ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z
-        --     ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z
-        --     ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z
-        --     ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
-        --     ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
-        -- ]],
+        -- header = banner,
       },
       sections = {
         { section = 'header', padding = 2 },
         { section = 'keys', gap = 1, padding = 1 },
         { section = 'startup' },
       },
+    },
+    indent = {},
+    notifier = {},
+    scratch = {},
+  },
+  keys = {
+    {
+      '<leader>.',
+      function()
+        Snacks.scratch()
+      end,
+      desc = 'Toggle Scratch Buffer',
     },
   },
   config = function(_, opts)
@@ -45,10 +59,5 @@ return {
     vim.keymap.set({ 'n', 't' }, '<leader>t', function()
       Snacks.terminal()
     end, { desc = 'Toggle Snacks Terminal' })
-
-    -- Open dashboard on startup
-    -- vim.schedule(function()
-    --   Snacks.dashboard()
-    -- end)
   end,
 }

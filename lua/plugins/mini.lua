@@ -15,7 +15,6 @@ return { -- Collection of various small independent plugins/modules
     require('mini.icons').setup()
     require('mini.tabline').setup()
     require('mini.map').setup()
-    require('mini.notify').setup()
 
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     --

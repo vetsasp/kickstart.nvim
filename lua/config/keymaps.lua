@@ -40,7 +40,7 @@ end, { desc = 'Toggle comment' })
 map('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Lazy' })
 
 -- open floating terminal
-map({ 'n', 't' }, '<leader>ft', '<cmd>Floaterminal<CR>', { desc = 'Toggle floating terminal' })
+-- map({ 'n', 't' }, '<leader>ft', '<cmd>Floaterminal<CR>', { desc = 'Toggle floating terminal' })
 
 -- copy all
 map('n', '<C-c>', 'gg"+yG', { desc = 'Copy [A]ll to system clipboard' })

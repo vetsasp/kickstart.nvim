@@ -37,30 +37,10 @@ require('lazy').setup({
     { import = 'plugins' },
   },
 
-  -- -- individual imports for bugfix
-  -- require 'plugins.blink',
-  -- require 'plugins.conform',
-  -- require 'plugins.copilot',
-  -- require 'plugins.flash',
-  -- require 'plugins.gitsigns',
-  -- require 'plugins.init',
-  -- require 'plugins.lsp',
-  -- require 'plugins.mini',
-  -- require 'plugins.neotree',
-  -- require 'plugins.obsidian',
-  -- require 'plugins.snacks',
-  -- require 'plugins.telescope',
-  -- require 'plugins.todo',
-  -- require 'plugins.tokyonights',
-  -- require 'plugins.treesitter',
-  -- require 'plugins.trouble',
-  -- require 'plugins.whichkey',
-
   install = { colorscheme = { 'tokyonight' } },
   checker = { enabled = true },
 
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
 }, {
   ui = {
