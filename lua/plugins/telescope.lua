@@ -122,6 +122,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
       end,
       desc = '[F]ind [N]eovim files',
     },
+    {
+      '<leader>ft',
+      function()
+        vim.cmd 'TodoTelescope'
+      end,
+      desc = '[F]ind [t]odos',
+    },
   },
   config = function()
     require('telescope').setup {

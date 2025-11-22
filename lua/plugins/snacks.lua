@@ -59,5 +59,9 @@ return {
     vim.keymap.set({ 'n', 't' }, '<leader>t', function()
       Snacks.terminal()
     end, { desc = 'Toggle Snacks Terminal' })
+
+    vim.keymap.set("t", "<C-k>", function()
+      vim.cmd('wincmd k')
+    end, { desc = 'Go to buffer above (Snacks Terminal)' })
   end,
 }
