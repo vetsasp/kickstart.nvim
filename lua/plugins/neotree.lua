@@ -20,7 +20,21 @@ return {
   },
 
   opts = {
+    close_if_last_window = true,
     filesystem = {
+      filtered_items = {
+        hide_dotfiles = false,
+        hide_git_ignored = true,
+        hide_hidden = true,
+      },
+      filtering = {
+        window = {
+          position = 'top',
+          label = 'Explore: ',
+        },
+        case_sensitive = false,
+        search_while_typing = true,
+      },
       window = {
         position = 'left',
         mappings = {

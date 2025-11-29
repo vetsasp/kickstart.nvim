@@ -15,6 +15,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
   },
   keys = {
     {
+      '<leader><leader>',
+      function()
+        require('telescope.builtin').buffers()
+      end,
+      desc = '[ ] Find existing buffers',
+    },
+    {
       '<leader>ff',
       function()
         require('telescope.builtin').find_files()
@@ -85,13 +92,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
       desc = '[F]ind [B]uffers',
     },
     {
-      '<leader><leader>',
-      function()
-        require('telescope.builtin').buffers()
-      end,
-      desc = '[ ] Find existing buffers',
-    },
-    {
       '<leader>fz',
       function()
         local builtin = require 'telescope.builtin'
@@ -115,12 +115,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
       desc = '[F]ind [/] in Open Files',
     },
     {
-      '<leader>fn',
+      '<leader>fc',
       function()
         local builtin = require 'telescope.builtin'
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end,
-      desc = '[F]ind [N]eovim files',
+      desc = '[F]ind Neovim [C]onfig files',
     },
     {
       '<leader>ft',

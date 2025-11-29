@@ -7,3 +7,20 @@ return {
     -- signs = false,
   },
 }
+
+-- NOTE: note
+-- INFO: info
+-- TODO: todo
+-- TEST: test
+-- PERF: performance
+-- PERFORMANCE: performance
+-- OPTIM: optimize
+-- OPTIMIZE: optimize
+-- HACK: hack
+-- WARN: warning
+-- WARNING: warning
+-- XXX: xxx
+-- FIX: fix
+-- BUG: bug
+-- ISSUE: issue
+-- FIXME: fixme
