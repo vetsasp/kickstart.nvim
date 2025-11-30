@@ -8,7 +8,17 @@ return { -- Collection of various small independent plugins/modules
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
     --  - ci'  - [C]hange [I]nside [']quote
-    require('mini.ai').setup { n_lines = 500 }
+    require('mini.ai').setup {
+      n_lines = 500,
+      custom_textobjects = {
+        f = require('mini.ai').gen_spec.treesitter {
+          a = { '@function.outer', '@conditional.outer', '@loop.outer' },
+          i = { '@function.inner', '@conditional.inner', '@loop.inner' },
+        },
+        c = require('mini.ai').gen_spec.treesitter { a = '@class.outer', i = '@class.inner' },
+        t = require('mini.ai').gen_spec.treesitter { a = '@comment.outer', i = '@comment.outer' },
+      },
+    }
 
     require('mini.comment').setup()
     require('mini.pairs').setup()
