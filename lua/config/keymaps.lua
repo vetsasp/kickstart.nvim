@@ -51,7 +51,10 @@ map({ 'n', 'v' }, '<leader>/', function()
 end, { desc = 'Toggle comment' })
 
 ----- QUICKFIX -----
-map('n', '<leader>qq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+map('n', '<leader>qq', function()
+  vim.diagnostic.setqflist()
+  vim.cmd 'copen'
+end, { desc = 'Open diagnostic [Q]uickfix list' })
 map('n', '<leader>qn', '<cmd>cnext<CR>', { desc = 'Go to [N]ext diagnostic in buffer' })
 map('n', '<leader>qp', '<cmd>cprev<CR>', { desc = 'Go to [P]revious diagnostic in buffer' })
 map('n', '<leader>qt', function()
