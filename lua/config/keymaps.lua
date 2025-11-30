@@ -51,13 +51,13 @@ map({ 'n', 'v' }, '<leader>/', function()
 end, { desc = 'Toggle comment' })
 
 ----- QUICKFIX -----
-map('n', '<leader>qq', function()
+map('n', '<leader>qd', function()
   vim.diagnostic.setqflist()
   vim.cmd 'copen'
-end, { desc = 'Open diagnostic [Q]uickfix list' })
+end, { desc = 'Open [D]iagnostic quickfix list' })
 map('n', '<leader>qn', '<cmd>cnext<CR>', { desc = 'Go to [N]ext diagnostic in buffer' })
 map('n', '<leader>qp', '<cmd>cprev<CR>', { desc = 'Go to [P]revious diagnostic in buffer' })
-map('n', '<leader>qt', function()
+map('n', '<leader>qq', function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
     local ft = vim.api.nvim_get_option_value('filetype', { buf = buf })
@@ -67,7 +67,7 @@ map('n', '<leader>qt', function()
     end
   end
   vim.cmd 'copen'
-end, { desc = '[T]oggle quickfix list' })
+end, { desc = 'Toggle [Q]uickfix list' })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
