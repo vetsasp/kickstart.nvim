@@ -3,7 +3,8 @@ local map = vim.keymap.set
 ----- ESSENTIALS -----
 map('n', ';', ':', { desc = 'CMD enter command mode' })
 -- Better escape from insert and visual mode
-map({ 'i', 'v' }, 'jk', '<ESC>')
+-- map({ 'i', 'v' }, 'jk', '<ESC>') -- when I try to select 1 line down, this triggers, so only in insert mode for now
+map('i', 'jk', '<ESC>')
 
 ----- NAVIGATION -----
 -- Start and End of lines

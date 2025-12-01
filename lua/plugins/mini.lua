@@ -1,6 +1,6 @@
 return { -- Collection of various small independent plugins/modules
   'nvim-mini/mini.nvim',
-  event = 'VimEnter',
+  event = 'VeryLazy',
   config = function()
     -- Better Around/Inside textobjects
     --
