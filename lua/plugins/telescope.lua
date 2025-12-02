@@ -132,6 +132,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
   },
   config = function()
     require('telescope').setup {
+      defaults = {
+        mappings = {
+          i = {
+            ['<C-a>'] = require('telescope.actions').add_selection_to_qflist,
+          },
+          n = {
+            ['<C-a>'] = require('telescope.actions').add_selection_to_qflist,
+          },
+        },
+      },
       -- pickers = {}
       extensions = {
         ['ui-select'] = {
@@ -145,6 +155,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
 
-    require('config.multigrep').setup()
+    -- require('config.multigrep').setup()
   end,
 }
