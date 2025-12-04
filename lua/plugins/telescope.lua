@@ -135,10 +135,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
       defaults = {
         mappings = {
           i = {
-            ['<C-a>'] = require('telescope.actions').add_selection_to_qflist,
+            ['<C-a>'] = require('telescope.actions').smart_send_to_qflist,
           },
           n = {
-            ['<C-a>'] = require('telescope.actions').add_selection_to_qflist,
+            ['<C-a>'] = require('telescope.actions').smart_send_to_qflist,
           },
         },
       },

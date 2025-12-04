@@ -76,3 +76,7 @@ map({ 'n', 't' }, '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window
 map({ 'n', 't' }, '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 map({ 'n', 't' }, '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map({ 'n', 't' }, '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+map('n', '<leader>fn', function()
+  require('snacks').picker.notifications()
+end, { desc = 'Show snack notifications' })
