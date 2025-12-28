@@ -1,5 +1,5 @@
 return {
   'Aasim-A/scrollEOF.nvim',
-  event = { 'CursorMoved' },
+  event = { 'InsertEnter' },
   opts = {},
 }
