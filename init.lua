@@ -31,13 +31,15 @@ require 'config.keymaps'
 -- [[ Autocommands ]]
 require 'config.autocommands'
 
+-- [[ Theme ]]
+require 'config.theme'
+
 -- [[ Configure and install plugins ]]
 require('lazy').setup({
   spec = {
     { import = 'plugins' },
   },
 
-  install = { colorscheme = { 'tokyonight' } },
   checker = { enabled = true },
 
   -- require 'kickstart.plugins.debug',
