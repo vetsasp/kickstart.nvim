@@ -6,6 +6,9 @@ return { -- You can easily change to a different colorscheme.
   'folke/tokyonight.nvim',
   enabled = true,
   priority = 1000, -- Make sure to load this before all the other start plugins.
+  cond = function()
+    return vim.g.current_theme == 'tokyonight'
+  end,
   config = function()
     ---@diagnostic disable-next-line: missing-fields
     require('tokyonight').setup {
@@ -14,9 +17,6 @@ return { -- You can easily change to a different colorscheme.
       },
     }
 
-    -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-    if vim.g.current_theme == 'tokyonight' then
-      vim.cmd.colorscheme 'tokyonight-night'
-    end
+    vim.cmd.colorscheme 'tokyonight-night'
   end,
 }

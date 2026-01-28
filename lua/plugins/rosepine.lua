@@ -1,10 +1,12 @@
 return {
   'rose-pine/neovim',
   name = 'rose-pine',
+  priority = 1000,
+  cond = function()
+    return vim.g.current_theme == 'rose-pine'
+  end,
   config = function()
     require('rose-pine').setup {}
-    if vim.g.current_theme == 'rose-pine' then
-      vim.cmd.colorscheme 'rose-pine'
-    end
+    vim.cmd.colorscheme 'rose-pine'
   end,
 }

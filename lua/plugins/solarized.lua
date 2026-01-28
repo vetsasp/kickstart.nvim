@@ -1,7 +1,9 @@
 return {
   'maxmx03/solarized.nvim',
-  lazy = false,
   priority = 1000,
+  cond = function()
+    return vim.g.current_theme == 'solarized'
+  end,
   ---@type solarized.config
   opts = {
     variant = 'autumn',
@@ -10,8 +12,6 @@ return {
     vim.o.termguicolors = true
     vim.o.background = 'dark'
     require('solarized').setup(opts)
-    if vim.g.current_theme == 'solarized' then
-      vim.cmd.colorscheme 'solarized'
-    end
+    vim.cmd.colorscheme 'solarized'
   end,
 }
