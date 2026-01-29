@@ -25,6 +25,7 @@ return {
           { icon = ' ', key = 'f', desc = 'Find File', action = ":lua Snacks.dashboard.pick('files')" },
           { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
           { icon = ' ', key = 'g', desc = 'Find Text', action = ":lua Snacks.dashboard.pick('live_grep')" },
+          { icon = ' ', key = 't', desc = 'Todo Comments', action = ":lua Snacks.dashboard.pick('todo_comments')" },
           { icon = ' ', key = 'r', desc = 'Recent Files', action = ":lua Snacks.dashboard.pick('oldfiles')" },
           { icon = ' ', key = 'c', desc = 'Config', action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
           { icon = ' ', key = 's', desc = 'Restore Session', section = 'session' },
@@ -60,8 +61,8 @@ return {
       Snacks.terminal()
     end, { desc = 'Toggle Snacks Terminal' })
 
-    vim.keymap.set("t", "<C-k>", function()
-      vim.cmd('wincmd k')
+    vim.keymap.set('t', '<C-k>', function()
+      vim.cmd 'wincmd k'
     end, { desc = 'Go to buffer above (Snacks Terminal)' })
   end,
 }

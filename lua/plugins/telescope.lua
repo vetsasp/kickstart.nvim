@@ -101,7 +101,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
           previewer = false,
         })
       end,
-      desc = '[/] Fuzzily search in current buffer',
+      desc = '[F]ind [Z] in current buffer',
     },
     {
       '<leader>f/',
