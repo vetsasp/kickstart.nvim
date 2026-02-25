@@ -78,6 +78,7 @@ end, { desc = 'Toggle [Q]uickfix list' })
 -- map({ 'n', 't' }, '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 -- map({ 'n', 't' }, '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Show notification telescope, if there are any
 map('n', '<leader>fn', function()
   require('snacks').picker.notifications()
 end, { desc = 'Show snack notifications' })
