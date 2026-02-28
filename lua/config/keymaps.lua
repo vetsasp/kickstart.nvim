@@ -9,7 +9,8 @@ map('i', 'jk', '<ESC>')
 ----- NAVIGATION -----
 -- Start and End of lines
 map({ 'n', 'v' }, '<S-H>', '^', { desc = 'Move to first non-space character' })
-map({ 'n', 'v' }, '<S-L>', 'g_', { desc = 'Move to last non-space character' })
+-- map({ 'n', 'v' }, '<S-L>', 'g_', { desc = 'Move to last non-space character' })
+map({ 'n', 'v' }, '<S-L>', '$', { desc = 'Move to last character' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
