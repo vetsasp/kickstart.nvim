@@ -27,6 +27,10 @@ map('n', '<C-u>', '<C-u>zz')
 map('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Next buffer' })
 map('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Previous buffer' })
 
+-- Oil
+map('n', '<leader>o', '<cmd>Oil<CR>', { desc = 'Oil' })
+map('n', '<leader>O', '<cmd>:vsp<CR><cmd>Oil<CR>', { desc = 'Oil' })
+
 ----- IMPROVEMENTS -----
 -- Searches centered
 map('n', 'n', 'nzzzv')
