@@ -10,7 +10,7 @@ return {
   lazy = false,
   config = function()
     require('oil').setup {
-      skip_confirm_for_simple_edits = false,
+      skip_confirm_for_simple_edits = true,
 
       -- Sort file and directory names case insensitive
       case_insensitive = true,

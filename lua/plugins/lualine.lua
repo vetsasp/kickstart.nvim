@@ -14,12 +14,15 @@ return {
         section_separators = { left = '', right = '' },
       },
       sections = {
-        lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
-        lualine_b = { 'branch' },
+        lualine_a = {
+          { 'mode', separator = { left = '' }, right_padding = 2 },
+        },
+        lualine_b = { 'branch', 'filename' },
         lualine_c = {
           -- center components
           '%=',
-          'filename' --[[ add your center components here in place of this comment ]],
+          --[[ add your center components here in place of this comment ]]
+          -- 'filename'
         },
         lualine_x = {},
         lualine_y = { 'filetype', 'progress' },
