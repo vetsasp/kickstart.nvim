@@ -66,6 +66,9 @@ require('lazy').setup({
   },
 })
 
+-- vim ui2
+require('vim._core.ui2').enable {}
+
 -- [[ Transparency ]]
 if vim.g.transparency then
   vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
