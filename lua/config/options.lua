@@ -47,6 +47,9 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- tab size
 vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.expandtab = true
 
 -- Preview substitutions live, as you type
 vim.o.inccommand = 'split'
@@ -57,12 +60,12 @@ vim.o.cursorline = true
 -- Enable true color support
 vim.o.termguicolors = true
 
--- Minimal number of screen lines to keep above and below the cursor.
+-- Minimal number of screen lines to keep above and below the cursor
 vim.o.scrolloff = 10
 
 -- setup folds
 vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldlevel = 99
 vim.defer_fn(function()
   vim.cmd 'silent! normal! zx'
