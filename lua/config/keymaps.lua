@@ -40,7 +40,7 @@ map('n', 'N', 'Nzzzv')
 map('x', '<leader>p', '"_dP')
 
 -- <leader>l to open Lazy
-map('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Lazy' })
+map('n', '<leader>lz', '<cmd>Lazy<CR>', { desc = 'Lazy' })
 
 -- copy all
 map('n', '<C-c>', 'gg"+yG', { desc = 'Copy [A]ll to system clipboard' })
@@ -49,6 +49,7 @@ map('n', '<C-c>', 'gg"+yG', { desc = 'Copy [A]ll to system clipboard' })
 map('n', '<leader>x', '<cmd>bd<CR>', { desc = 'Close current buffer' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
+-- vim.keymap.del('n', '<leader>th')
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Toggle line comment

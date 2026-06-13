@@ -55,7 +55,7 @@ return {
     local Snacks = require 'snacks'
     Snacks.setup(opts)
 
-    vim.keymap.set({ 'n', 't' }, '<leader>t', function()
+    vim.keymap.set({ 'n', 't' }, '<leader>tt', function()
       Snacks.terminal()
     end, { desc = 'Toggle Snacks Terminal' })
 
