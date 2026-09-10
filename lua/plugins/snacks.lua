@@ -56,11 +56,19 @@ return {
     Snacks.setup(opts)
 
     vim.keymap.set({ 'n', 't' }, '<leader>tt', function()
-      Snacks.terminal()
+      Snacks.terminal.toggle(nil, { count = 1 })
     end, { desc = 'Toggle Snacks Terminal' })
+
+    vim.keymap.set({ 'n', 't' }, '<leader>tv', function()
+      Snacks.terminal.toggle(nil, { count = 2, win = { position = 'right' } })
+    end, { desc = 'Toggle Snacks Terminal (Right)' })
 
     vim.keymap.set('t', '<C-k>', function()
       vim.cmd 'wincmd k'
     end, { desc = 'Go to buffer above (Snacks Terminal)' })
+
+    vim.keymap.set('t', '<C-h>', function()
+      vim.cmd 'wincmd h'
+    end, { desc = 'Go to buffer left (Snacks Terminal)' })
   end,
 }
