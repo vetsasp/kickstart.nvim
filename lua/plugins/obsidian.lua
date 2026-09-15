@@ -1,5 +1,6 @@
 return {
   'epwalsh/obsidian.nvim',
+  cond = not vim.g.vscode,
   -- enabled = false,
   version = '*',
   lazy = true,

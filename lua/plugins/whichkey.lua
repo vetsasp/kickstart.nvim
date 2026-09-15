@@ -1,5 +1,6 @@
 return { -- Useful plugin to show you pending keybinds.
   'folke/which-key.nvim',
+  cond = not vim.g.vscode,
   event = 'VeryLazy', -- Sets the loading event to 'VeryLazy'
   opts = {
     -- delay between pressing a key and opening which-key (milliseconds)

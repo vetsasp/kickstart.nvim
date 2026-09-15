@@ -6,6 +6,7 @@ local banner = [[
 
 return {
   'folke/snacks.nvim',
+  cond = not vim.g.vscode,
   lazy = false,
   priority = 1000,
   opts = {
@@ -59,7 +60,7 @@ return {
       Snacks.terminal.toggle(nil, { count = 1 })
     end, { desc = 'Toggle Snacks Terminal' })
 
-    vim.keymap.set({ 'n', 't' }, '<leader>tv', function()
+    vim.keymap.set({ 'n', 't' }, '<leader>th', function()
       Snacks.terminal.toggle(nil, { count = 2, win = { position = 'right' } })
     end, { desc = 'Toggle Snacks Terminal (Right)' })
 

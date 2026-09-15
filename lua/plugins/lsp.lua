@@ -12,6 +12,7 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
+    cond = not vim.g.vscode,
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim

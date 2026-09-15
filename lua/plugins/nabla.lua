@@ -1,5 +1,6 @@
 return {
   'jbyuki/nabla.nvim',
+  cond = not vim.g.vscode,
   opts = { ensure_installed = { 'tree-sitter-cli' } },
   lazy = true,
   -- enabled = false,

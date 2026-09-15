@@ -3,7 +3,7 @@ return {
   name = 'rose-pine',
   priority = 1000,
   cond = function()
-    return vim.g.current_theme == 'rose-pine'
+    return not vim.g.vscode and vim.g.current_theme == 'rose-pine'
   end,
   config = function()
     require('rose-pine').setup {}

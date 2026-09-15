@@ -1,6 +1,7 @@
 return {
   -- NOTE: Highlight todo, notes, etc in comments
   'folke/todo-comments.nvim',
+  cond = not vim.g.vscode,
   -- event = 'BufReadPost',
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {

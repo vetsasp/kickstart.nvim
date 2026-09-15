@@ -66,8 +66,13 @@ require('lazy').setup({
   },
 })
 
--- vim ui2
-require('vim._core.ui2').enable {}
+if vim.g.vscode then
+  require 'config.vscode'
+end
+
+if not vim.g.vscode then
+  require('vim._core.ui2').enable {}
+end
 
 -- [[ Transparency ]]
 if vim.g.transparency then

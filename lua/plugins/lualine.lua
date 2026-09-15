@@ -3,6 +3,7 @@
 
 return {
   'nvim-lualine/lualine.nvim',
+  cond = not vim.g.vscode,
   event = 'BufRead',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()

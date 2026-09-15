@@ -1,0 +1,68 @@
+local map = vim.keymap.set
+local vscode = require 'vscode'
+
+local function action(command, opts)
+  return function()
+    vscode.action(command, opts)
+  end
+end
+
+map('n', '<Tab>', action 'workbench.action.nextEditorInGroup', { desc = 'Next editor' })
+map('n', '<S-Tab>', action 'workbench.action.previousEditorInGroup', { desc = 'Previous editor' })
+
+map('n', '<leader>e', action 'workbench.view.explorer', { desc = 'Explorer' })
+map('n', '<leader>o', action 'workbench.view.explorer', { desc = 'Explorer' })
+map('n', '<leader>x', action 'workbench.action.closeActiveEditor', { desc = 'Close editor' })
+map({ 'n', 'x' }, '<leader>/', action 'editor.action.commentLine', { desc = 'Toggle comment' })
+map('n', '<leader>cc', action 'editor.action.formatDocument', { desc = 'Format document' })
+map('x', '<leader>cc', action 'editor.action.formatSelection', { desc = 'Format selection' })
+
+map('n', '<leader><leader>', action 'workbench.action.showAllEditors', { desc = 'Find editors' })
+map('n', '<leader>ff', action 'workbench.action.quickOpen', { desc = 'Find files' })
+map('n', '<leader>fh', action 'workbench.action.showCommands', { desc = 'Find commands' })
+map('n', '<leader>fk', action 'workbench.action.openGlobalKeybindings', { desc = 'Find keymaps' })
+map('n', '<leader>fT', action 'workbench.action.showCommands', { desc = 'Find commands' })
+map('n', '<leader>fw', function()
+  vscode.action('workbench.action.findInFiles', { args = { query = vim.fn.expand '<cword>' } })
+end, { desc = 'Find word' })
+map('n', '<leader>fg', action 'workbench.action.findInFiles', { desc = 'Find by grep' })
+map('n', '<leader>fd', action 'workbench.actions.view.problems', { desc = 'Find diagnostics' })
+map('n', '<leader>fr', action 'workbench.action.quickOpen', { desc = 'Resume finder' })
+map('n', '<leader>f.', action 'workbench.action.openRecent', { desc = 'Find recent files' })
+map('n', '<leader>fb', action 'workbench.action.showAllEditors', { desc = 'Find buffers' })
+map('n', '<leader>f/', action 'workbench.action.findInFiles', { desc = 'Find in open files' })
+map('n', '<leader>ft', function()
+  vscode.action('workbench.action.findInFiles', { args = { query = 'TODO' } })
+end, { desc = 'Find todos' })
+
+map('n', '<leader>qd', action 'workbench.actions.view.problems', { desc = 'Open diagnostics' })
+map('n', '<leader>qn', action 'editor.action.marker.next', { desc = 'Next diagnostic' })
+map('n', '<leader>qp', action 'editor.action.marker.prev', { desc = 'Previous diagnostic' })
+map('n', '<leader>qq', action 'workbench.actions.view.problems', { desc = 'Toggle diagnostics' })
+map('n', '<leader>xx', action 'workbench.actions.view.problems', { desc = 'Diagnostics' })
+map('n', '<leader>xX', action 'workbench.actions.view.problems', { desc = 'Buffer diagnostics' })
+map('n', '<leader>cs', action 'workbench.action.gotoSymbol', { desc = 'Document symbols' })
+map('n', '<leader>cl', action 'editor.action.goToReferences', { desc = 'References' })
+map('n', '<leader>xL', action 'workbench.actions.view.problems', { desc = 'Location list' })
+map('n', '<leader>xQ', action 'workbench.actions.view.problems', { desc = 'Quickfix list' })
+
+map('n', '<leader>tt', action 'workbench.action.terminal.toggleTerminal', { desc = 'Toggle terminal' })
+map('n', '<leader>th', action 'workbench.action.terminal.split', { desc = 'Split terminal' })
+map('n', '<leader>fn', action 'notifications.showList', { desc = 'Show notifications' })
+map('n', '<leader>.', action 'workbench.action.files.newUntitledFile', { desc = 'New scratch file' })
+
+map('n', 'grn', action 'editor.action.rename', { desc = 'Rename symbol' })
+map({ 'n', 'x' }, 'gra', action 'editor.action.codeAction', { desc = 'Code action' })
+map('n', 'grr', action 'editor.action.goToReferences', { desc = 'References' })
+map('n', 'gri', action 'editor.action.goToImplementation', { desc = 'Implementation' })
+map('n', 'grd', action 'editor.action.revealDefinition', { desc = 'Definition' })
+map('n', 'grD', action 'editor.action.revealDeclaration', { desc = 'Declaration' })
+map('n', 'gO', action 'workbench.action.gotoSymbol', { desc = 'Document symbols' })
+map('n', 'gW', action 'workbench.action.showAllSymbols', { desc = 'Workspace symbols' })
+map('n', 'grt', action 'editor.action.goToTypeDefinition', { desc = 'Type definition' })
+map('n', '<leader>lh', action 'editor.action.toggleInlayHints', { desc = 'Toggle inlay hints' })
+
+map('n', '<C-h>', action 'workbench.action.focusLeftGroup', { desc = 'Focus left editor group' })
+map('n', '<C-j>', action 'workbench.action.focusBelowGroup', { desc = 'Focus lower editor group' })
+map('n', '<C-k>', action 'workbench.action.focusAboveGroup', { desc = 'Focus upper editor group' })
+map('n', '<C-l>', action 'workbench.action.focusRightGroup', { desc = 'Focus right editor group' })

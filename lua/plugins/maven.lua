@@ -1,5 +1,6 @@
 return {
   'supermaven-inc/supermaven-nvim',
+  cond = not vim.g.vscode,
   event = 'BufRead',
   -- enabled = false,
   config = function()
