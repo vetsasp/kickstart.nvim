@@ -14,5 +14,15 @@ return {
         },
       },
     }
+
+    vim.keymap.set('n', '<leader>ta', '<cmd>Codeium Toggle<CR>', { desc = 'Toggle Windsurf' })
+    require('which-key').add {
+      {
+        '<leader>ta',
+        desc = function()
+          return require('codeium').s.enabled and 'Windsurf: On' or 'Windsurf: Off'
+        end,
+      },
+    }
   end,
 }

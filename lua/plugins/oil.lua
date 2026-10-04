@@ -21,6 +21,7 @@ return {
         ['g?'] = { 'actions.show_help', mode = 'n' },
         ['<CR>'] = 'actions.select',
         ['<C-s>'] = { 'actions.select', opts = { vertical = true } },
+        ['<leader><CR>'] = { 'actions.select', opts = { vertical = true, close = true } },
         ['<C-h>'] = false,
         ['<C-t>'] = { 'actions.select', opts = { tab = true } },
         ['<C-p>'] = 'actions.preview',
