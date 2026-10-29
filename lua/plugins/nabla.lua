@@ -6,11 +6,8 @@ return {
   -- enabled = false,
 
   config = function()
-    require('nvim-treesitter.configs').setup {
-      ensure_installed = { 'latex' },
-      auto_install = true,
-      sync_install = false,
-    }
+    -- nvim-treesitter `main`: install parsers through the module API.
+    require('nvim-treesitter').install { 'latex' }
   end,
 
   keys = function()

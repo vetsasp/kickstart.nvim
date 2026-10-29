@@ -1,20 +1,21 @@
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
-  event = { 'BufReadPost', 'BufNewFile' },
+  -- The `main` branch is the rewrite compatible with Neovim 0.12+. The old
+  -- `master` branch is archived and its custom predicates/directives break on
+  -- Neovim 0.12's capture API change (captures are now node arrays, so
+  -- `match[capture_id]` is a table and `get_node_text` fails with
+  -- "attempt to call method 'range' (a nil value)").
+  branch = 'main',
+  -- nvim-treesitter `main` does not support lazy-loading.
+  lazy = false,
   build = ':TSUpdate',
-  main = 'nvim-treesitter.configs', -- Sets main module to use for opts
   dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
+    { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
     'nvim-treesitter/nvim-treesitter-context',
   },
   config = function()
-    require('treesitter-context').setup {
-      max_lines = 3,
-    }
-  end,
-  -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-  opts = {
-    ensure_installed = {
+    -- Install any missing parsers (async; a no-op when already installed).
+    require('nvim-treesitter').install {
       'bash',
       'c',
       'diff',
@@ -27,36 +28,46 @@ return { -- Highlight, edit, and navigate code
       'vim',
       'vimdoc',
       'python',
-    },
-    -- Autoinstall languages that are not installed
-    auto_install = true,
-    highlight = {
-      enable = true,
-      -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-      --  If you are experiencing weird indenting issues, add the language to
-      --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-      additional_vim_regex_highlighting = { 'ruby' },
-    },
-    indent = { enable = true, disable = { 'ruby' } },
-    textobjects = {
-      select = {
-        enable = true,
-        -- Automatically jump forward to textobj, similar to targets.vim
-        lookahead = true,
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
-      },
-    },
-  },
-  -- There are additional nvim-treesitter modules that you can use to interact
-  -- with nvim-treesitter. You should go explore a few and see what interests you:
-  --
-  --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-  --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-  --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    }
+
+    -- `main` no longer enables highlighting/indentation globally, so enable them
+    -- per FileType. Highlighting is provided by Neovim; indentation comes from
+    -- nvim-treesitter and is only enabled for languages that ship an `indents`
+    -- query (otherwise we would clobber the language's default indenting).
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function(args)
+        local buf = args.buf
+
+        -- Some Neovim runtime ftplugins already start the highlighter.
+        if not vim.treesitter.highlighter.active[buf] then
+          pcall(vim.treesitter.start, buf)
+        end
+
+        local has_parser, parser = pcall(vim.treesitter.get_parser, buf)
+        if not has_parser or not parser then
+          return
+        end
+        local has_query, indent_query = pcall(vim.treesitter.query.get, parser:lang(), 'indents')
+        if has_query and indent_query then
+          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end,
+    })
+
+    -- Text objects. On `main` the keymaps are the user's responsibility.
+    require('nvim-treesitter-textobjects').setup {
+      select = { lookahead = true },
+    }
+    local function select_textobject(query)
+      return function()
+        require('nvim-treesitter-textobjects.select').select_textobject(query, 'textobjects')
+      end
+    end
+    vim.keymap.set({ 'x', 'o' }, 'af', select_textobject '@function.outer', { desc = 'Treesitter select function outer' })
+    vim.keymap.set({ 'x', 'o' }, 'if', select_textobject '@function.inner', { desc = 'Treesitter select function inner' })
+    vim.keymap.set({ 'x', 'o' }, 'ac', select_textobject '@class.outer', { desc = 'Treesitter select class outer' })
+    vim.keymap.set({ 'x', 'o' }, 'ic', select_textobject '@class.inner', { desc = 'Treesitter select class inner' })
+
+    require('treesitter-context').setup { max_lines = 3 }
+  end,
 }
