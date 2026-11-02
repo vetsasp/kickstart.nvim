@@ -1,8 +1,8 @@
 return {
   'folke/flash.nvim',
+  cond = not vim.g.vscode,
   -- event = 'VeryLazy',
   lazy = true,
-  vscode = true,
   ---@type Flash.Config
   opts = {},
   -- stylua: ignore

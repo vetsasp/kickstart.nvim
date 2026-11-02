@@ -15,26 +15,39 @@ return { -- Highlight, edit, and navigate code
   },
   config = function()
     -- Install any missing parsers (async; a no-op when already installed).
+    -- `main` no longer auto-installs parsers, so list every language you edit.
     require('nvim-treesitter').install {
       'bash',
       'c',
+      'css',
       'diff',
       'html',
+      'java',
+      'javascript',
+      'json',
+      'latex',
       'lua',
       'luadoc',
       'markdown',
       'markdown_inline',
+      'python',
       'query',
+      'toml',
+      'tsx',
+      'typescript',
       'vim',
       'vimdoc',
-      'python',
+      'yaml',
     }
 
     -- `main` no longer enables highlighting/indentation globally, so enable them
     -- per FileType. Highlighting is provided by Neovim; indentation comes from
     -- nvim-treesitter and is only enabled for languages that ship an `indents`
     -- query (otherwise we would clobber the language's default indenting).
+    local ts_group = vim.api.nvim_create_augroup('nvim-treesitter-filetype', { clear = true })
     vim.api.nvim_create_autocmd('FileType', {
+      group = ts_group,
+      desc = 'Enable treesitter highlighting and indentation',
       callback = function(args)
         local buf = args.buf
 

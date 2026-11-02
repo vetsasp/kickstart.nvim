@@ -15,7 +15,6 @@ return {
   -- },
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'hrsh7th/nvim-cmp',
   },
   opts = {
     workspaces = {
@@ -24,5 +23,8 @@ return {
         path = '~/uni/Vault',
       },
     },
+    -- Completion is handled by blink.cmp; obsidian's nvim-cmp integration is
+    -- not used.
+    completion = { nvim_cmp = false },
   },
 }

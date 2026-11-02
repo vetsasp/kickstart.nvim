@@ -2,9 +2,9 @@ local map = vim.keymap.set
 
 ----- ESSENTIALS -----
 map('n', ';', ':', { desc = 'CMD enter command mode' })
--- Better escape from insert and visual mode
-map({ 'i', 'v' }, 'jk', '<ESC>') -- when I try to select 1 line down, this triggers, so only in insert mode for now
--- map('i', 'jk', '<ESC>')
+-- Better escape from insert mode. Do not map this in visual mode: selecting
+-- downward then upward would trigger it accidentally.
+map('i', 'jk', '<ESC>')
 
 ----- NAVIGATION -----
 -- Start and End of lines
@@ -29,7 +29,7 @@ map('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Previous buffer' })
 
 -- Oil
 map('n', '<leader>o', '<cmd>Oil<CR>', { desc = 'Oil' })
-map('n', '<leader>O', '<cmd>:vsp<CR><cmd>Oil<CR>', { desc = 'Oil' })
+map('n', '<leader>O', '<cmd>vsp<CR><cmd>Oil<CR>', { desc = 'Oil (vertical split)' })
 
 ----- IMPROVEMENTS -----
 -- Searches centered

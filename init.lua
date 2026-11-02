@@ -74,11 +74,5 @@ if not vim.g.vscode then
   require('vim._core.ui2').enable {}
 end
 
--- [[ Transparency ]]
-if vim.g.transparency then
-  vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-  vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-end
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

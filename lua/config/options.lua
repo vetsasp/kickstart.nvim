@@ -13,14 +13,17 @@ vim.o.relativenumber = true
 vim.o.mouse = 'a'
 
 -- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Set it on `UIEnter` because it can increase startup time.
 --  Remove this option if you want your OS clipboard to remain independent.
 if vim.g.vscode then
   vim.g.clipboard = vim.g.vscode_clipboard
 else
-  vim.schedule(function()
-    vim.o.clipboard = 'unnamedplus'
-  end)
+  vim.api.nvim_create_autocmd('UIEnter', {
+    once = true,
+    callback = function()
+      vim.o.clipboard = 'unnamedplus'
+    end,
+  })
 end
 
 -- Enable break indent
@@ -74,6 +77,10 @@ vim.opt.foldlevel = 99
 vim.defer_fn(function()
   vim.cmd 'silent! normal! zx'
 end, 200)
+
+-- Keep the LSP log from growing without bound; server stderr is the main
+-- source of noise in ~/.local/state/nvim/lsp.log.
+vim.lsp.log.set_level 'ERROR'
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)

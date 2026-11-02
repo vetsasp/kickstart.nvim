@@ -4,7 +4,7 @@ return {
   enabled = true,
   priority = 1000,
   cond = function()
-    return vim.g.current_theme == 'tokyonight'
+    return not vim.g.vscode and vim.g.current_theme == 'tokyonight'
   end,
   config = function()
     ---@diagnostic disable-next-line: missing-fields

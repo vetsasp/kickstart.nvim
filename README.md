@@ -1,10 +1,31 @@
-# kickstart.nvim
+# Neovim config
 
-#### kickstart.nvim clone
+Personal Neovim configuration based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), using [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
-> My Neovim config, forked from kickstart.nvim. I plan on very slowly building this out until it has all the tooling I need. The goal is for it to be very simple; it should contain all the features I expect, and nothing more. 
+## Requirements
 
+- Neovim 0.12+
+- `git`, `make`, `unzip`, `rg`
+- A Nerd Font (icons are enabled in `lua/config/options.lua`)
 
-```sh
-git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+## Layout
+
 ```
+init.lua               entry point
+lua/config/            options, keymaps, autocommands, theme, VS Code shims
+lua/plugins/           plugin specs (one file per plugin or feature)
+lua/kickstart/         upstream kickstart reference files (not all are loaded)
+ftplugin/              filetype-specific settings
+spell/                 personal spellfile
+```
+
+## Common commands
+
+```vim
+:Lazy             " plugin manager
+:Mason            " LSP/formatter installer
+:checkhealth      " health checks
+:LspInfo          " active language servers
+```
+
+Format Lua with `stylua lua/ ftplugin/`.

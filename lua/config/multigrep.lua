@@ -27,11 +27,8 @@ local multigrep = function(opts)
         table.insert(args, pieces[2])
       end
 
-      ---@diagnostic disable-next-line: deprecated
-      return vim.tbl_flatten {
-        args,
-        { '--colors=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
-      }
+      vim.list_extend(args, { '--colors=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' })
+      return args
     end,
     entry_maker = make_entry.gen_from_vimgrep(opts),
     cwd = opts.cwd,
@@ -48,8 +45,10 @@ local multigrep = function(opts)
     :find()
 end
 
+M.open = multigrep
+
 M.setup = function()
-  vim.keymap.set('n', '<leader>fl', multigrep)
+  vim.keymap.set('n', '<leader>fl', M.open, { desc = 'Multi grep' })
 end
 
 return M
