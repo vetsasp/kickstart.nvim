@@ -58,12 +58,48 @@ map({ 'n', 'v' }, '<leader>/', function()
 end, { desc = 'Toggle comment' })
 
 ----- QUICKFIX -----
+-- Navigate the quickfix/location list, wrapping at the ends.
+local function qf_nav(direction)
+  local winid = vim.api.nvim_get_current_win()
+  local is_loclist = vim.fn.getwininfo(winid)[1].loclist == 1
+  local info = is_loclist and vim.fn.getloclist(0, { idx = 0, size = 0 }) or vim.fn.getqflist { idx = 0, size = 0 }
+  if info.size == 0 then
+    return
+  end
+
+  -- With no current entry, next starts at the first item and prev at the last.
+  local base = info.idx
+  if base == 0 then
+    base = direction > 0 and 0 or 1
+  end
+  local target = (base - 1 + direction) % info.size + 1
+  vim.cmd(('%s %d'):format(is_loclist and 'll' or 'cc', target))
+end
+
+-- Wrap `n`/`p` inside the quickfix window itself.
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('qf-wrap-nav', { clear = true }),
+  pattern = 'qf',
+  callback = function(args)
+    vim.keymap.set('n', 'n', function()
+      qf_nav(1)
+    end, { buffer = args.buf, desc = 'Next quickfix item (wrap)' })
+    vim.keymap.set('n', 'p', function()
+      qf_nav(-1)
+    end, { buffer = args.buf, desc = 'Previous quickfix item (wrap)' })
+  end,
+})
+
 map('n', '<leader>qd', function()
   vim.diagnostic.setqflist()
   vim.cmd 'copen'
 end, { desc = 'Open [D]iagnostic quickfix list' })
-map('n', '<leader>qn', '<cmd>cnext<CR>', { desc = 'Go to [N]ext diagnostic in buffer' })
-map('n', '<leader>qp', '<cmd>cprev<CR>', { desc = 'Go to [P]revious diagnostic in buffer' })
+map('n', '<leader>qn', function()
+  qf_nav(1)
+end, { desc = 'Go to [N]ext quickfix item (wrap)' })
+map('n', '<leader>qp', function()
+  qf_nav(-1)
+end, { desc = 'Go to [P]revious quickfix item (wrap)' })
 map('n', '<leader>qq', function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
