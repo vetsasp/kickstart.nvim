@@ -112,6 +112,14 @@ map('n', '<leader>qq', function()
   vim.cmd 'copen'
 end, { desc = 'Toggle [Q]uickfix list' })
 
+----- DIAGNOSTICS -----
+-- Toggle diagnostic underlines, signs, and virtual text globally.
+map('n', '<leader>tl', function()
+  local enabled = vim.diagnostic.is_enabled()
+  vim.diagnostic.enable(not enabled)
+  vim.notify('Diagnostics ' .. (enabled and 'disabled' or 'enabled'))
+end, { desc = 'Toggle diagnostics' })
+
 -- Keybinds to make split navigation easier.
 -- REPLACED BY TMUX NAVIGATOR
 --  Use CTRL+<hjkl> to switch between windows
